@@ -1,0 +1,195 @@
+/* * {
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 60px;
+  background-color: whitesmoke;
+}
+.nav-links li{
+    font-size: 15px;
+    color: grey;
+}
+nav div {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+nav div div{
+    height: 30px;
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    font-size: 12.5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.box1{
+    display: flex;
+    align-items: center;
+    width: 120px;
+    gap: 5px;
+}
+
+.box2{
+    width: 65px;
+    gap: 5px;
+}
+.box3{
+    width: 65px;
+    gap: 5px;
+}
+.nav-links li{
+    font-family: sans-serif; 
+}
+.image1{
+    width: 10px;
+    height: 10px;
+}
+.section1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 60px;
+}
+.logo{
+    display: flex;
+}
+
+.logo div{
+    height: 50px;
+    width: 130px;
+    background-color: pink;
+}
+.logo :nth-child(1){
+    background-color: rgb(58, 58, 58);
+    color: rgb(253, 218, 13);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    font-size: 35px;
+    font-weight: 700;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.logo :nth-child(2){
+    background-color: 	rgb(253, 218, 13);
+    color: rgb(58, 58, 58);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    font-weight: 700;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+.inputt{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+    height: 30px;
+    padding: 5px 10px;
+    background-color: white;
+    border: 1px solid  rgb(228, 228, 228);
+    outline: none;
+}
+.section1_div1{
+    display: flex;
+    align-items: center;
+}
+.section1_div1 :nth-child(2){
+    display: flex;
+    height: 27.3px;
+    padding: 6px 0px;
+    width: 40px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid  rgb(228, 228, 228);
+}
+
+::placeholder {
+    font-size: 15px;
+    color: rgb(228, 228, 228);
+}
+.customer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.customer h3{
+    color:  gray;
+    font-size: 17px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+}
+
+.customer h2{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+    font-size: 21px;
+}
+
+.image2{
+    width: 16px;
+    height: 15px;
+}
+.section2{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 50px;
+    height: 70px;
+    background-color: rgb(58, 58, 58);
+}
+.section2_div1_div1{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    height: 70px;
+    width: 200px;
+    padding: 0px 20px;
+    background-color: 	#fdda0d;
+    font-size: 18px;
+    gap: 10px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    
+}
+
+.section2_div1{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.section2_div2{
+    display: flex;
+    gap: 20px;
+    font-weight: 600;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: white;
+}
+.section2_side{
+    display: flex;
+    gap: 20px;
+}
+
+.circle{
+    height: 17px;
+    width: 17px;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 700;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid white;
+    color: white;
+}
+.section2_side_decison{
+    display: flex;
+    gap: 5px;
+} */
