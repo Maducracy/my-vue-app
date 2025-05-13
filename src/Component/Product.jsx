@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useStore } from "../Zustand";
 import { FaStar, FaShoppingCart, FaTimes } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Product = () => {
   const { data, loading, error, fetchData, addtocart, removecart } = useStore();
   const [cartItems, setCartItems] = useState({});
   const [alertMessage, setAlertMessage] = useState("");
   const [reverseMessage, setReverseMessage] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchData();
@@ -44,7 +46,7 @@ const Product = () => {
       </div>
     );
   } else {
-  <p className="text-red-500 text-center">Error: {error}</p>;
+   <p className="text-red-500 text-center">Error: {error}</p>;
   }
 
   // if (error) {

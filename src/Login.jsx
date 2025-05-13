@@ -9,10 +9,8 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const Navigate = useNavigate();
-  const handleSubmit = () =>{
-    Navigate("/Home")
-     }
+
+ 
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -85,7 +83,7 @@ const LoginForm = () => {
           </div>
 
           {/* Submit Button */}
-          <button onClick={handleSubmit}
+          <button
             type="submit"
             className="w-full bg-yellow-600 text-white py-2 rounded-lg hover:bg-yellow-500 transition duration-300"
           >

@@ -14,8 +14,14 @@ import lady from "../assets/lady.jpg";
 import shoe from "../assets/shoe.jpg";
 import cream from "../assets/cream.jpg";
 import Product from "../Component/Product";
+import wine from "../assets/wine.jpeg";
+import atomic from "../assets/atomic.webp";
+import headset from "../assets/headset.jpeg";
+import laptop from "../assets/laptop.jpeg";
+import gen from "../assets/gen.jpeg";
 import { useNavigate } from "react-router-dom";
 import "../LogoSlider.css";
+
 import useStore from "../Zustand.js";
 // import menu from "../assets/menu.png"
 import "../App.css";
@@ -40,21 +46,20 @@ import {
   AlignJustify,
 } from "lucide-react";
 import RecentProducts from "../Component/Recentproduct.jsx";
-import { FaAmazon, FaEbay, FaShopify, FaApple } from "react-icons/fa";
-function Home() {
 
+function Home() {
   const { cart } = useStore();
   const Navigate = useNavigate();
   const Cartstore = () => {
-    Navigate("/Cartstore");
+    Navigate("/Cartstore", { state: { cart } });
   };
 
   const [catOpen, setCatOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [darkmode , setDatkmode] = useState(true)
- 
+  const [darkmode, setDatkmode] = useState(true);
+  console.log(cart);
 
   //   "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
   //   "https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg",
@@ -102,20 +107,7 @@ function Home() {
 
     return () => clearInterval(interval);
   });
-  const picture = [
-    lady,
-    shoe,
-    cream,
-    lady,
-    shoe,
-    cream,
-    lady,
-    shoe,
-    cream,
-    lady,
-    shoe,
-    cream,
-  ];
+  const picture = [lady, shoe, cream, wine, atomic, headset, laptop, gen];
   return (
     <div>
       {/* <nav className="flex items-center justify-between px-[60px] py-2 bg-[whitesmoke] ">
@@ -295,7 +287,7 @@ function Home() {
             EN
             <ChevronDown size={16} />
           </div>
-          <button onClick={()=>setDatkmode(!darkmode)} className=""></button>
+          <button onClick={() => setDatkmode(!darkmode)} className=""></button>
         </div>
 
         {/* Mobile hamburger button */}
@@ -403,16 +395,28 @@ function Home() {
                 >
                   Phone
                 </Link>
-                <Link to="./Fashion" className="text-gray-700 hover:text-yellow-500 cursor-pointer">
+                <Link
+                  to="./Fashion"
+                  className="text-gray-700 hover:text-yellow-500 cursor-pointer"
+                >
                   Fashion
                 </Link>
-                <Link to="./HomeGarden" className="text-gray-700 hover:text-yellow-500 cursor-pointer">
+                <Link
+                  to="./HomeGarden"
+                  className="text-gray-700 hover:text-yellow-500 cursor-pointer"
+                >
                   Home & Garden
                 </Link>
-                <Link to="./HealthBeauty" className="text-gray-700 hover:text-yellow-500 cursor-pointer">
+                <Link
+                  to="./HealthBeauty"
+                  className="text-gray-700 hover:text-yellow-500 cursor-pointer"
+                >
                   Health & Beauty
                 </Link>
-                <Link to="./ToyGame" className="text-gray-700 hover:text-yellow-500 cursor-pointer">
+                <Link
+                  to="./ToyGame"
+                  className="text-gray-700 hover:text-yellow-500 cursor-pointer"
+                >
                   Toys & Games
                 </Link>
               </ul>
@@ -429,20 +433,20 @@ function Home() {
                   Signup
                 </Link>
               </ul> */}
-                <ul className="flex flex-col">
-                  <Link
-                    to="./Login"
-                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                  >
-                    Login
-                  </Link>
-                  <Link
-                    to="./Signup"
-                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                  >
-                    Signup
-                  </Link>
-                </ul>
+              <ul className="flex flex-col">
+                <Link
+                  to="./Login"
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="./Signup"
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                >
+                  Signup
+                </Link>
+              </ul>
             </div>
 
             {/* Currency and language */}
@@ -527,16 +531,28 @@ function Home() {
                   >
                     Phone
                   </Link>
-                  <Link to="./Fashion" className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  <Link
+                    to="./Fashion"
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  >
                     Fashion
                   </Link>
-                  <Link to="./HomeGarden"className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  <Link
+                    to="./HomeGarden"
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  >
                     Home & Garden
                   </Link>
-                  <Link to="./HealthBeauty" className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  <Link
+                    to="./HealthBeauty"
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  >
                     Health & Beauty
                   </Link>
-                  <Link to="./ToyGame" className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  <Link
+                    to="./ToyGame"
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  >
                     Toys & Games
                   </Link>
                 </ul>
@@ -647,7 +663,7 @@ function Home() {
         {/* Categories Heading Section - below features */}
         <section className="flex flex-col md:flex-row items-center mx-4 md:mx-6 mt-10">
           <h2 className="font-bold text-3xl md:text-4xl font-sans mb-2 md:mb-0 md:mr-6">
-            Categories
+            Hot Deals
           </h2>
           <div className="w-full md:flex-1 h-[2px] bg-gray-300"></div>
         </section>
@@ -655,31 +671,46 @@ function Home() {
         {/* Other content after categories goes here */}
         <div className="mt-6">
           {/* Insert your categories grid, cards, etc. here */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {picture.map((img, index) => (
-              <div
-                key={index}
-                className="flex items-center gap-4 h-[150px] sm:h-[180px] md:h-[250px] w-full bg-white p-2 rounded shadow"
-              >
-                <div className="h-full w-[100px] sm:w-[120px] md:w-[150px]">
-                  <img
-                    src={img}
-                    alt={`Category ${index + 1}`}
-                    className="w-full h-full object-cover rounded transition-transform duration-300 hover: hover:scale-105"
-                  />
-                </div>
+          <div className="mt-6 overflow-x-auto">
+  <div className="flex gap-4 w-max px-1">
+    {picture.map((img, index) => (
+      <div
+        key={index}
+        className="flex items-center gap-4 h-[150px] sm:h-[180px] md:h-[250px] min-w-[300px] sm:min-w-[350px] bg-white p-3 rounded shadow"
+      >
+        {/* Image */}
+        <div className="h-full w-[100px] sm:w-[120px] md:w-[150px] flex-shrink-0">
+          <img
+            src={img}
+            alt={`Category ${index + 1}`}
+            className="w-full h-full object-cover rounded transition-transform duration-300 hover:scale-105"
+          />
+        </div>
 
-                <div className="flex flex-col justify-center">
-                  <h3 className="font-semibold text-gray-800 text-sm sm:text-base">
-                    Product Name
-                  </h3>
-                  <p className="text-gray-500 text-xs sm:text-sm">
-                    1000 products
-                  </p>
-                </div>
-              </div>
-            ))}
+        {/* Text and Button */}
+        <div className="flex flex-col justify-between h-full py-2 flex-1">
+          <div>
+            <h3 className="font-semibold text-gray-800 text-sm sm:text-base">
+              Hot Deals
+            </h3>
+            <p className="text-gray-500 text-xs sm:text-sm">1000 products</p>
+            <p className="text-gray-500 text-xs sm:text-sm">Save 20%</p>
+            <p className="text-gray-500 text-xs sm:text-sm">Limited Time</p>
+
+            <p className="text-gray-500 text-xs sm:text-sm">On Orders Over $50</p>
+         
+         
+
+
           </div>
+          {/* <button className="mt-2 px-3 py-1 bg-blue-600 text-white text-xs sm:text-sm rounded hover:bg-blue-700 transition duration-200 w-fit">
+            Add to Cart
+          </button> */}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
 
           <div>
             <h2 className="font-bold text-3xl md:text-4xl font-sans mt-5 md:mb-0 md:mr-6">

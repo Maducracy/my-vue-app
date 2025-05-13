@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Cartstore() {
+const Cartstore = () => {
   return (
     <div>Cartstore</div>
   )
