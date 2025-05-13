@@ -671,7 +671,7 @@ function Home() {
         {/* Other content after categories goes here */}
         <div className="mt-6">
           {/* Insert your categories grid, cards, etc. here */}
-          <div className="mt-6 overflow-x-auto">
+          <div className="flex overflow-x-auto gap-4 pb-4 no-scrollbar">
   <div className="flex gap-4 w-max px-1">
     {picture.map((img, index) => (
       <div
@@ -693,7 +693,7 @@ function Home() {
             <h3 className="font-semibold text-gray-800 text-sm sm:text-base">
               Hot Deals
             </h3>
-            <p className="text-gray-500 text-xs sm:text-sm">1000 products</p>
+            <p className="text-gray-500 text-xs sm:text-sm ">1000 products</p>
             <p className="text-gray-500 text-xs sm:text-sm">Save 20%</p>
             <p className="text-gray-500 text-xs sm:text-sm">Limited Time</p>
 
