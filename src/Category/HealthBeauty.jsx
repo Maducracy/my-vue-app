@@ -31,8 +31,7 @@ const products = [
 ];
 
 const HealthBeauty = () => {
-  const { fetchData, addtocart, removecart } = useStore();
-  const [cartItems, setCartItems] = useState({});
+  const { fetchData, addtocart, removecart, cart } = useStore();
   const [alertMessage, setAlertMessage] = useState("");
   const [reverseMessage, setReverseMessage] = useState("");
 
@@ -54,23 +53,23 @@ const HealthBeauty = () => {
     }
   }, [reverseMessage]);
 
+  const isInCart = (id) => cart.some((item) => item.id === id);
+
+  const handleAddToCart = (product) => {
+    addtocart(product);
+    setAlertMessage(`${product.name} added to cart!`);
+  };
+
+  const handleRemoveFromCart = (product) => {
+    removecart(product.id);
+    setReverseMessage(`${product.name} removed from cart!`);
+  };
+
   const formatPrice = (price) =>
     new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
     }).format(price);
-
-  const handleAddToCart = (productId, product) => {
-    setCartItems((prev) => ({ ...prev, [productId]: true }));
-    addtocart(product);
-    setAlertMessage(`${product.name} added to cart!`);
-  };
-
-  const handleRemoveFromCart = (productId, product) => {
-    setCartItems((prev) => ({ ...prev, [productId]: false }));
-    removecart(product.id);
-    setReverseMessage(`${product.name} removed from cart!`);
-  };
 
   return (
     <div className="p-4">
@@ -116,9 +115,9 @@ const HealthBeauty = () => {
               </div>
             </div>
             <div>
-              {cartItems[product.id] ? (
+              {isInCart(product.id) ? (
                 <button
-                  onClick={() => handleRemoveFromCart(product.id, product)}
+                  onClick={() => handleRemoveFromCart(product)}
                   className="w-full bg-red-600 text-white py-2 rounded-md text-sm font-medium flex items-center justify-center gap-2 hover:bg-red-700 transition"
                   aria-label="Remove from cart"
                   title="Remove from cart"
@@ -128,7 +127,7 @@ const HealthBeauty = () => {
                 </button>
               ) : (
                 <button
-                  onClick={() => handleAddToCart(product.id, product)}
+                  onClick={() => handleAddToCart(product)}
                   className="w-full bg-black text-white py-2 rounded-md text-sm font-medium flex items-center justify-center gap-2 hover:bg-gray-800 transition"
                   aria-label="Add to cart"
                   title="Add to cart"

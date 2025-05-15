@@ -699,7 +699,7 @@ function Home() {
 
             <p className="text-gray-500 text-xs sm:text-sm">On Orders Over $50</p>
          
-         
+           <button className="w-full bg-black text-white px-4 py-2 rounded flex items-center justify-center gap-2 hover:scale-105 transition" >Add to cart </button>
 
 
           </div>

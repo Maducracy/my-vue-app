@@ -25,14 +25,17 @@ export const useStore = create((set) => ({
     }
   },
 
-  addtocart: (item) => {
-    set((state) => ({ cart: [...state.cart, item] }));
-  },
-  removecart: (id) => {
+  addtocart: (item) =>
+    set((state) => {
+      const alreadyExists = state.cart.find((i) => i.id === item.id);
+      if (alreadyExists) return state; // Avoid duplicates
+      return { cart: [...state.cart, item] };
+    }),
+
+  removecart: (id) =>
     set((state) => ({
       cart: state.cart.filter((item) => item.id !== id),
-    }));
-  },
+    })),
   
 
   
