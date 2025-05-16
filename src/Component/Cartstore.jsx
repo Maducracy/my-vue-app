@@ -40,8 +40,14 @@ const Cartstore = () => {
 
   const fwConfig = {
     ...config,
-    text: "Pay Now",
+    text: "Checkout",
+    className: "bg-blue-600 text-white px-4 py-2 rounded hover:opacity-80",
+  
     cursor:"pointer",
+    callback: (response) => {
+      console.log("Payment successful", response);
+      // You can clear the cart here if needed
+    },
     callback: (response) => {
       console.log("Payment successful", response);
       // You can clear the cart here if needed
@@ -95,3 +101,45 @@ const Cartstore = () => {
 };
 
 export default Cartstore;
+// src/pages/Cartstore.js
+// import React from "react";
+// import { useStore } from "../Zustand";
+// import { FaTimes } from "react-icons/fa";
+
+// const Cartstore = () => {
+//   const { cart, removecart } = useStore();
+
+//   return (
+//     <div className="p-4">
+//       <h2 className="text-2xl font-bold mb-4">Your Cart</h2>
+
+//       {cart.length === 0 ? (
+//         <p className="text-gray-500">Your cart is empty.</p>
+//       ) : (
+//         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+//           {cart.map((item) => (
+//             <div key={item.id} className="p-4 border rounded shadow bg-white">
+//               <img
+//                 src={item.image}
+//                 alt={item.title}
+//                 className="w-full h-40 object-contain mb-2"
+//               />
+//               <h3 className="text-sm font-semibold mb-2">{item.title}</h3>
+//               <p className="font-bold mb-2">${item.price}</p>
+//               <button
+//                 onClick={() => removecart(item.id)}
+//                 className="bg-red-600 text-white px-4 py-2 rounded flex items-center justify-center gap-2"
+//               >
+//                 <FaTimes />
+//                 Remove
+//               </button>
+//             </div>
+//           ))}
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default Cartstore;
+
