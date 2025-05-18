@@ -2,13 +2,14 @@
 import  { useEffect, useState } from "react";
 import { useStore } from "../Zustand";
 import { FaStar, FaShoppingCart, FaTimes } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 const Product = () => {
   const { data, loading, error, fetchData, addtocart, removecart, cart } = useStore();
   const [alertMessage, setAlertMessage] = useState("");
   const [reverseMessage, setReverseMessage] = useState("");
-  const navigate = useNavigate();
+
 
   useEffect(() => {
     fetchData();
@@ -75,11 +76,13 @@ const Product = () => {
               className="p-4 rounded shadow bg-white flex flex-col justify-between min-h-[420px]"
             >
               <div>
+                <Link to={`/product/${product.id}`}>
                 <img
                   src={product.image}
                   alt={product.title}
                   className="w-full h-40 object-contain mb-4"
                 />
+                </Link>
                 <h2 className="text-sm font-semibold text-center min-h-[48px]">
                   {product.title.length > 50
                     ? product.title.slice(0, 50) + "..."

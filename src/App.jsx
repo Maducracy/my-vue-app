@@ -1,5 +1,5 @@
 import Home from "./Home/Home";
-import Pages from "../src/Pages.jsx";
+
 import Shop from "../src/Shop.jsx";
 import Help from "../src/Help.jsx";
 import FaQ from "../src/FAQ.jsx";
@@ -23,12 +23,12 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/pages" element={<Pages />} />
+    
         <Route path="/shop" element={<Shop />} />
         <Route path="/Help" element={<Help />} />
         <Route path="/FAQ" element={<FaQ />} />
         <Route path="/Contact" element={<Contact />} />
-        <Route path="/ShopDetail" element={<ShopDetail />} />
+       <Route path="/product/:id" element={<ShopDetail />} />
         <Route path="/Login" element={<Login />}></Route>
         <Route path="/Signup" element={<Signup />}></Route>
         <Route path="/Phone" element={<Phone />}></Route>

@@ -10,6 +10,7 @@ import Cap from "../assets/Cap.webp";
 import bag from "../assets/bag.jpeg";
 import { FaShoppingCart, FaTimes } from "react-icons/fa";
 import { useStore } from "../Zustand";
+import { Link } from "react-router-dom";
 
 const products = [
   { id: 1, name: "Wig", price: "$30", img: wig },
@@ -78,7 +79,8 @@ const { fetchData, addtocart, removecart } = useStore();
           <div
             key={product.id}
             className="shadow-md p-3 sm:p-4 hover:shadow-lg transition duration-300 bg-white"
-          >
+          >  
+          
             <img
               src={product.img}
               alt={product.name}

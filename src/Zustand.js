@@ -8,7 +8,7 @@ export const useStore = create((set) => ({
   error: null,
   cart: [],
 
-  fetchData: async () => {
+   fetchData: async () => {
     set({ loading: true, error: null });
 
     const url = "https://fakestoreapi.com/products";
