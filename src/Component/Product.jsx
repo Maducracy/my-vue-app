@@ -47,11 +47,13 @@ const Product = () => {
         <div className="animate-spin rounded-full h-16 w-16 border-4 border-t-4 border-gray-300 border-t-blue-500"></div>
       </div>
     );
+  }{
+    <p className="bg-400-red text-centre">Error</p>
   }
 
-  if (error) {
-    return <p className="text-red-500 text-center">Error: {error}</p>;
-  }
+  // if (error) {
+  //   return <p className="text-red-500 text-center">Error: {error}</p>;
+  // }
 
   return (
     <>

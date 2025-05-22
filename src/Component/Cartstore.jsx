@@ -102,7 +102,7 @@
 
 // export default Cartstore;
 // src/pages/Cartstore.js
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { useStore } from "../Zustand";
 import { FaTimes, FaCheckCircle } from "react-icons/fa";
 
@@ -112,6 +112,7 @@ const Cartstore = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [number , setNumber] = useState(false)
 
   const total = cart.reduce((acc, item) => acc + item.price, 0).toFixed(2);
 
@@ -129,6 +130,9 @@ const Cartstore = () => {
     if (!formData.name || !formData.number || !formData.amount) {
       setError("Please fill in all fields.");
       return;
+    }
+    if(!formData.number){
+      setNumber("Please insert a number")
     }
 
     setTimeout(() => {
@@ -199,7 +203,7 @@ const Cartstore = () => {
 
 
             {success ? (
-              <div className="flex flex-col items-center text-green-600 animate-bounce">
+              <div className="flex flex-col items-center text-green-600 ">
                 <FaCheckCircle className="text-6xl mb-3" />
                 <p className="text-lg font-semibold">Payment Successful!</p>
               </div>
@@ -221,8 +225,8 @@ const Cartstore = () => {
 
                 <div className="relative">
                   <input
-                    type="text"
-                    name="number"
+                   type="text"
+                    name="text"
                     required
                     value={formData.number}
                     onChange={handleChange}

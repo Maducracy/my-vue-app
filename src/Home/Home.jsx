@@ -21,6 +21,8 @@ import laptop from "../assets/laptop.jpeg";
 import gen from "../assets/gen.jpeg";
 import { useNavigate } from "react-router-dom";
 import "../LogoSlider.css";
+import { motion } from "framer-motion";
+
 
 import useStore from "../Zustand.js";
 // import menu from "../assets/menu.png"
@@ -242,7 +244,7 @@ function Home() {
         </div>
       </div> */}
 
-      <nav className="flex items-center justify-between px-4 lg:px-12 py-2 bg-gray-100 shadow-md fixed top-0 left-0 right-0 z-50 sm:static ">
+      <nav className="flex items-center justify-between px-4 lg:px-12 py-2 bg-gray-100 shadow-md right-0 z-50 sm:static ">
         <div className="hidden lg:flex items-center gap-4">
           <div className="flex gap-5 list-none text-gray-500 text-sm font-sans">
             <Link>About</Link>
@@ -319,10 +321,10 @@ function Home() {
             </div>
           </div>
           <div className="flex items-center gap-1 ">
-            <ShoppingCart onClick={Cartstore} size={20} />
+          <ShoppingCart onClick={Cartstore} size={24} color="black" />
             <div className="h-4 w-4 text-xs font-bold flex items-center justify-center border-gray-800 text-gray-800">
               {cart.length > 0 && (
-                <span className="absolute bg-black-600 text-black text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                <span className="absolute bg-green-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full top-3 ">
                   {cart.length}
                 </span>
               )}
@@ -474,8 +476,8 @@ function Home() {
             SHOP
           </div>
         </div>
-
-        <div className="flex items-center">
+         {/* old input for desktop */}
+        {/* <div className="flex items-center">
           <input
             className="w-80 h-8 px-2.5 border border-gray-200 outline-none placeholder:text-gray-300 placeholder:text-sm"
             type="text"
@@ -484,8 +486,19 @@ function Home() {
           <div className="flex items-center justify-center w-10 h-8 border border-gray-200">
             <Search size={20} />
           </div>
+        </div> */}
+   <div className="">
+      <div className="flex items-center w-full">
+        <input
+          className="transition-all duration-300 ease-in-out w-80 h-8 px-2.5 border border-gray-200 outline-none placeholder:text-gray-300 placeholder:text-sm focus:h-12 focus:shadow-lg focus:px-4 rounded"
+          type="text"
+          placeholder="Search for Products"
+        />
+        <div className="flex items-center justify-center w-10 h-8 border border-gray-200 ml-2">
+          <Search size={20} />
         </div>
-
+      </div>
+    </div>
         <div className="flex flex-col items-center">
           <h3 className="text-gray-500 text-base font-normal font-sans">
             Customer Service
@@ -495,19 +508,18 @@ function Home() {
       </div>
 
       {/* Search bar - visible on mobile */}
-      <div className="flex lg:hidden px-4 py-2">
-        <div className="flex items-center w-full">
-          <input
-            className="w-full h-8 px-2.5 border border-gray-200 outline-none placeholder:text-gray-300 placeholder:text-sm"
-            type="text"
-            placeholder="Search for Products"
-          />
-          <div className="flex items-center justify-center w-10 h-8 border border-gray-200">
-            <Search size={20} />
-          </div>
+    <div className="flex lg:hidden px-4 py-2">
+      <div className="flex items-center w-full">
+        <input
+          className="transition-all duration-300 ease-in-out w-full h-8 px-2.5 border border-gray-200 outline-none placeholder:text-gray-300 placeholder:text-sm focus:h-12 focus:shadow-lg focus:px-4 rounded"
+          type="text"
+          placeholder="Search for Products"
+        />
+        <div className="flex items-center justify-center w-10 h-8 border border-gray-200 ml-2">
+          <Search size={20} />
         </div>
       </div>
-
+    </div>
       {/* Main navigation - desktop */}
       <div className="hidden lg:flex items-center justify-between px-12 h-16 bg-gray-800 sticky top-0 z-40">
         <div className="flex items-center gap-6">
@@ -589,11 +601,11 @@ function Home() {
             </div>
           </div>
           <div className="flex items-center gap-1">
-            <ShoppingCart onClick={Cartstore} size={20} color="white" />
+            <ShoppingCart onClick={Cartstore} size={24} color="white" />
 
             <div className="h-4 w-4 text-sm font-bold flex items-center justify-center  border-white text-white">
               {cart.length > 0 && (
-                <span className="absolute  bg-black-600 text-blaxk text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                <span className="absolute rounded-full border bg-green-600 text-blaxk text-xs w-5 h-5 flex items-center justify-center rounded-full top-0 mt-3">
                   {cart.length}
                 </span>
               )}
