@@ -22,6 +22,7 @@ import gen from "../assets/gen.jpeg";
 import { useNavigate } from "react-router-dom";
 import "../LogoSlider.css";
 import { motion } from "framer-motion";
+import Foryou from "../Component/Foryou.jsx"
 
 
 import useStore from "../Zustand.js";
@@ -763,6 +764,7 @@ function Home() {
         ))}
       </div>
       <RecentProducts />
+      <Foryou/>
       <Footer />
     </div>
   );
