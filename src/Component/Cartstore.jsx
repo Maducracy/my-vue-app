@@ -102,39 +102,45 @@
 
 // export default Cartstore;
 // src/pages/Cartstore.js
-import  { useState, useEffect } from "react";
-import { useStore } from "../Zustand";
+import { useState, useEffect } from "react";
+import { useStore,  } from "../Zustand";
+import { useProductStore} from  "../Store"
 import { FaTimes, FaCheckCircle } from "react-icons/fa";
-
 const Cartstore = () => {
   const { cart, removecart } = useStore();
+  
+
   const [formData, setFormData] = useState({ name: "", number: "", amount: "" });
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [number , setNumber] = useState(false)
 
-  const total = cart.reduce((acc, item) => acc + item.price, 0).toFixed(2);
+  const total = cart.reduce((acc, item) => {
+    let price = typeof item.price === "string"
+      ? parseFloat(item.price.replace(/[^0-9.]/g, ""))
+      : item.price;
+    return acc + (isNaN(price) ? 0 : price);
+  }, 0).toFixed(2);
 
   useEffect(() => {
     setFormData((prev) => ({ ...prev, amount: total }));
   }, [total]);
 
   const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const { name, number, amount } = formData;
 
-    if (!formData.name || !formData.number || !formData.amount) {
+    if (!name || !number || !amount) {
       setError("Please fill in all fields.");
       return;
     }
-    if(!formData.number){
-      setNumber("Please insert a number")
-    }
 
+    // Simulate payment processing
     setTimeout(() => {
       setSuccess(true);
       setError("");
@@ -180,6 +186,7 @@ const Cartstore = () => {
               onClick={() => {
                 setIsModalOpen(true);
                 setSuccess(false);
+                setError("");
               }}
               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-lg font-medium transition"
             >
@@ -191,8 +198,8 @@ const Cartstore = () => {
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-white bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-2xl w-full max-w-md p-6 relative shadow-lg animate-fade-in">
+        <div className="fixed inset-0 flex items-center justify-center z-50 transition-opacity duration-300 ease-out bg-black/40 backdrop-blur-sm">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative">
             <button
               onClick={() => setIsModalOpen(false)}
               className="absolute top-3 right-3 text-gray-500 hover:text-red-500"
@@ -201,9 +208,8 @@ const Cartstore = () => {
               <FaTimes size={20} />
             </button>
 
-
             {success ? (
-              <div className="flex flex-col items-center text-green-600 ">
+              <div className="flex flex-col items-center text-green-600 py-8">
                 <FaCheckCircle className="text-6xl mb-3" />
                 <p className="text-lg font-semibold">Payment Successful!</p>
               </div>
@@ -225,8 +231,8 @@ const Cartstore = () => {
 
                 <div className="relative">
                   <input
-                   type="text"
-                    name="text"
+                    type="text"
+                    name="number"
                     required
                     value={formData.number}
                     onChange={handleChange}
@@ -243,10 +249,10 @@ const Cartstore = () => {
                     name="amount"
                     value={formData.amount}
                     readOnly
-                    className="peer w-full border-b-2 border-gray-300 focus:border-blue-600 outline-none py-2 bg-transparent"
+                    className=" peer w-full border-b-2 border-gray-300 focus:border-blue-600 outline-none py-2 bg-transparent"
                   />
-                  <label className="absolute left-0 top-2 text-gray-400 text-sm peer-valid:text-xs peer-valid:-top-4">
-                    Amount
+                  <label className="">
+                    Price  Amount
                   </label>
                 </div>
 
