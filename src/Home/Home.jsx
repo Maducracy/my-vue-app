@@ -3,7 +3,7 @@ import React from "react";
 import menimage from "../assets/menimage.jpg";
 import offer1 from "../assets/offer1.jpg";
 import offer2 from "../assets/offer2.jpg";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import children from "../assets/children.jpg";
 import womenimage from "../assets/womenimage.jpg";
 import lady from "../assets/lady.jpg";
@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 import "../LogoSlider.css";
 import { motion } from "framer-motion";
 import Foryou from "../Component/Foryou.jsx";
+
 
 import useStore from "../Zustand.js";
 
@@ -56,9 +57,9 @@ function Home() {
   const [open, setOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [darkmode, setDatkmode] = useState(true);
+  const [darkmode, setDarkmode] = useState(true);
+  const [usd, setUsd] = useState(false);
   console.log(cart);
-
 
   useEffect(() => {
     const checkIfMobile = () => {
@@ -101,8 +102,8 @@ function Home() {
   });
   const picture = [lady, shoe, cream, wine, atomic, headset, laptop, gen];
   return (
-    <div>
-      <nav className="flex items-center justify-between px-4 lg:px-12 py-2 bg-gray-100 shadow-md right-0 z-50 sm:static ">
+    <div className="w-fullmd:w-96 lg:w-full">
+      <nav className="  flex items-center justify-between px-4 lg:px-12 py-2 bg-gray-100 shadow-md right-0 z-50 sm:static ">
         <div className="hidden lg:flex items-center gap-4">
           <div className="flex gap-5 list-none text-gray-500 text-sm font-sans">
             <Link>About</Link>
@@ -139,15 +140,37 @@ function Home() {
               </div>
             )}
           </div>
-          <div className="flex items-center w-16 gap-1 h-8 justify-center bg-white text-xs font-sans px-2">
-            USD
-            <ChevronDown size={16} />
+          <div className="relative">
+            <div
+              onClick={() => setUsd(!usd)}
+              className="flex items-center w-16 gap-1 h-8 justify-center bg-white text-xs font-sans px-2"
+            >
+              USD
+              <ChevronDown size={16} />
+            </div>
+            {usd && (
+              <div className="absolute top-8 left-0 w-30 bg-white shadow-md text-gray-700 z-50">
+                <ul className="flex flex-col">
+                  <Link
+                    to="./Login"
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="./Signup"
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  >
+                    Signup
+                  </Link>
+                </ul>
+              </div>
+            )}
           </div>
           <div className="flex items-center w-16 gap-1 h-8 justify-center bg-white text-xs font-sans px-2">
             EN
             <ChevronDown size={16} />
           </div>
-          <button onClick={() => setDatkmode(!darkmode)} className=""></button>
         </div>
 
         {/* Mobile hamburger button */}
@@ -192,9 +215,9 @@ function Home() {
 
       {/* Mobile menu - fixed position instead of overlay */}
       {mobileMenuOpen && (
-        <div className="fixed top-0 left-0 h-full w-64 bg-white  z-50 shadow-lg transform transition-transform duration-300 lg:hidden">
+        <div className="fixed top-0 left-0 h-full w-90 bg-white z-50 shadow-lg transform transition-transform duration-300 lg:hidden">
           <div className="p-4 overflow-y-auto h-full">
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex justify-between items-center mb-6 ">
               <div className="flex lg:hidden ">
                 <div className="h-10 w-24 bg-gray-800 text-yellow-400 flex items-center justify-center text-xl font-bold font-sans">
                   MULTI
@@ -203,7 +226,7 @@ function Home() {
                   SHOP
                 </div>
               </div>
-              <button onClick={() => setMobileMenuOpen(false)}>
+              <button className="" onClick={() => setMobileMenuOpen(false)}>
                 <X size={24} />
               </button>
             </div>
@@ -214,13 +237,13 @@ function Home() {
                 <Link className="text-gray-800 hover:text-yellow-500 font-medium">
                   About
                 </Link>
-                <Link className="text-gray-800 hover:text-yellow-500 font-medium">
+                <Link to="./Contact" className="text-gray-800 hover:text-yellow-500 font-medium">
                   Contact
                 </Link>
                 <Link className="text-gray-800 hover:text-yellow-500 font-medium">
                   Help
                 </Link>
-                <Link className="text-gray-800 hover:text-yellow-500 font-medium">
+                <Link to="./FAQ"className="text-gray-800 hover:text-yellow-500 font-medium">
                   FAQs
                 </Link>
               </div>
@@ -358,7 +381,7 @@ function Home() {
               type="text"
               placeholder="Search for Products"
             />
-            <div className="flex items-center justify-center w-10 h-8 border border-gray-200 ml-2">
+            <div className="flex items-center justify-center w-10 h-8 border border-gray-200 ml-2 bg-yellow-500 text-white">
               <Search size={20} />
             </div>
           </div>
@@ -379,7 +402,7 @@ function Home() {
             type="text"
             placeholder="Search for Products"
           />
-          <div className="flex items-center justify-center w-10 h-8 border border-gray-200 ml-2">
+          <div className="flex items-center justify-center w-10 h-8 border border-gray-200 ml-2 bg-yellow-500 text-white">
             <Search size={20} />
           </div>
         </div>
@@ -518,6 +541,8 @@ function Home() {
               </div>
             ))}
           </div>
+
+
         </div>
       </section>
       <section className="bg-gray-100 py-6 px-4">
@@ -581,7 +606,6 @@ function Home() {
                         On Orders Over $50
                       </p>
                     </div>
-                  
                   </div>
                 </div>
               ))}
@@ -594,7 +618,6 @@ function Home() {
               Recent Products
             </h2>
             <Product />
-      
           </div>
         </div>
       </section>
@@ -613,7 +636,7 @@ function Home() {
             <div className="absolute inset-0 bg-opacity-40 flex flex-col justify-center items-center text-white rounded">
               <p className="text-sm font-semibold">SAVE 20%</p>
               <h3 className="text-xl font-bold mb-2">Special Offer</h3>
-              <button className="bg-yellow-400 text-black px-4 py-1 font-medium">
+              <button  className="bg-yellow-400 text-black px-4 py-1 font-medium">
                 Shop Now
               </button>
             </div>

@@ -1,8 +1,14 @@
 import React from 'react'
+import { useState } from 'react'
+
+
 
 const FAQ = () => {
+const [Faq, setFaq] = useState("false")
   return (
-    <div>FAQ</div>
+    <div>
+      <button onClick={()=>setFaq(!Faq)}></button>
+    </div>
   )
 }
 

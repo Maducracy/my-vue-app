@@ -13,22 +13,22 @@ import ToyGame from "./Category/ToyGame.jsx";
 import Phone from "./Category/Phone.jsx";
 import Fashion from "./Category/Fashion.jsx";
 import Cartstore from "../src/Component/Cartstore.jsx";
+import About from "../src/About.jsx";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import React from "react";
 
 const App = () => {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-    
+
         <Route path="/shop" element={<Shop />} />
         <Route path="/Help" element={<Help />} />
         <Route path="/FAQ" element={<FaQ />} />
         <Route path="/Contact" element={<Contact />} />
-       <Route path="/product/:id" element={<ShopDetail />} />
+        <Route path="/product/:id" element={<ShopDetail />} />
         <Route path="/Login" element={<Login />}></Route>
         <Route path="/Signup" element={<Signup />}></Route>
         <Route path="/Phone" element={<Phone />}></Route>
@@ -37,6 +37,7 @@ const App = () => {
         <Route path="/HealthBeauty" element={<HealthBeauty />}></Route>
         <Route path="/HomeGarden" element={<HomeGarden />}></Route>
         <Route path="/ToyGame" element={<ToyGame />}></Route>
+        <Route path="/About" element={<About />}></Route>
       </Routes>
     </Router>
   );
