@@ -61,21 +61,22 @@ const Product = () => {
             key={product.id}
             className="bg-white p-3 sm:p-4 rounded shadow hover:shadow-md transition min-h-[480px] flex flex-col"
           >
-            <Link to={`/product/${product.id}`}>
-              <div className="relative group">
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="w-full h-40 sm:h-48 md:h-52 object-contain group-hover:scale-105 transition-transform"
-                />
-                <span className="absolute top-2 left-2 bg-yellow-500 text-white px-2 py-0.5 text-xs rounded">
-                  10% OFF
-                </span>
-                <span className="absolute top-2 right-2 bg-green-600 text-white px-2 py-0.5 text-xs rounded">
-                  Free Shipping
-                </span>
-              </div>
-            </Link>
+        <Link to={`/product/${product.id}`}>
+  <div className="relative group flex justify-center gap-20">
+    <img
+      src={product.image}
+      alt={product.title}
+      className="w-full h-40 sm:h-48 md:h-52 object-contain group-hover:scale-105 transition-transform"
+    />
+    <span className="absolute top-2 left-2 bg-yellow-500 text-white px-2 py-0.5 text-xs rounded">
+      10% OFF
+    </span>
+    <span className="absolute top-10 left-2 bg-green-600 text-white px-2 py-0.5 text-xs rounded">
+      Free Shipping
+    </span>
+  </div>
+</Link>
+
 
             <h2 className="text-xs sm:text-sm font-semibold mt-2 min-h-[48px] text-center leading-snug">
               {product.title.length > 55 ? `${product.title.slice(0, 55)}...` : product.title}

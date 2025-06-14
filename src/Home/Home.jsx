@@ -215,7 +215,7 @@ function Home() {
 
       {/* Mobile menu - fixed position instead of overlay */}
       {mobileMenuOpen && (
-        <div className="fixed top-0 left-0 h-full w-90 bg-white z-50 shadow-lg transform transition-transform duration-300 lg:hidden">
+        <div className="fixed top-0 left-0 h-full w-78 bg-white z-50 shadow-lg transform transition-transform duration-300 lg:hidden">
           <div className="p-4 overflow-y-auto h-full">
             <div className="flex justify-between items-center mb-6 ">
               <div className="flex lg:hidden ">
@@ -376,10 +376,12 @@ function Home() {
         </div> */}
         <div className="">
           <div className="flex items-center w-full">
-            <input
+            <input 
               className="transition-all duration-300 ease-in-out w-80 h-8 px-2.5 border border-gray-200 outline-none placeholder:text-gray-300 placeholder:text-sm focus:h-12 focus:shadow-lg focus:px-4 rounded"
               type="text"
+            
               placeholder="Search for Products"
+            
             />
             <div className="flex items-center justify-center w-10 h-8 border border-gray-200 ml-2 bg-yellow-500 text-white">
               <Search size={20} />
@@ -498,53 +500,108 @@ function Home() {
           </div>
         </div>
       </div>
-      <section className="flex justify-between px-[] py-5">
-        <div className="flex flex-col md:flex-row gap-4 w-full max-w-screen-4xl mx-auto px-4">
-          <div className="relative w-full md:w-[70%] h-[300px] md:h-[512px]">
-            <img
-              src={images[currentImage]}
-              alt="Men Fashion"
-              className="w-full h-full object-cover rounded"
-            />
-            <div className="absolute top-1/2 left-4 sm:left-6 md:left-10 transform -translate-y-1/2 text-white">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
-                Men Fashion
-              </h1>
-              <p className="mt-2 text-sm sm:text-base md:text-lg max-w-sm">
-                Lorem rebum magna amet lorem magna erat diam stet. Sadips duo
-                stet amet amet ndiam elit ipsum diam
-              </p>
-              <button className="mt-4 px-4 py-2 border border-white hover:bg-white hover:text-black transition">
-                Shop Now
-              </button>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-4 w-full md:w-[30%]">
-            {[offer1, offer2].map((offer, index) => (
-              <div
-                key={index}
-                className="relative h-[200px] md:h-[250px] w-full transition-transform duration-300  hover:scale-105"
-              >
-                <img
-                  src={offer}
-                  alt={`Offer ${index + 1}`}
-                  className="w-full h-full object-cover rounded transition-transform duration-300  hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-opacity-40 flex flex-col justify-center items-center text-white rounded">
-                  <p className="text-sm font-semibold">SAVE 20%</p>
-                  <h3 className="text-xl font-bold mb-2">Special Offer</h3>
-                  <button className="bg-yellow-400 text-black px-4 py-1 font-medium">
-                    Shop Now
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-
-
+      <section className="px-4 py-5">
+  {/* Mobile View: Horizontal Slider */}
+  <div className="block md:hidden">
+    <div className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide space-x-4">
+      {/* Slide 1 - Main Image */}
+      <div className="snap-start shrink-0 w-full relative h-[400px]">
+        <img
+          src={images[0]}
+          alt="Main"
+          className="w-full h-full object-cover rounded"
+        />
+        <div className="absolute inset-0 bg-black/40 text-white flex flex-col justify-center px-4">
+          <h1 className="text-3xl font-bold">Men Fashion</h1>
+          <p className="mt-2 text-sm">
+            Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elit ipsum diam
+          </p>
+          <button className="mt-4 px-4 py-2 border border-white hover:bg-white hover:text-black transition">
+            Shop Now
+          </button>
         </div>
-      </section>
+      </div>
+
+      {/* Slide 2 - Offer 1 */}
+      <div className="snap-start shrink-0 w-full relative h-[400px]">
+        <img
+          src={offer1}
+          alt="Offer 1"
+          className="w-full h-full object-cover rounded"
+        />
+        <div className="absolute inset-0 bg-black/40 text-white flex flex-col justify-center items-center">
+          <p className="text-sm font-semibold">SAVE 20%</p>
+          <h3 className="text-xl font-bold mb-2">Special Offer</h3>
+          <button className="bg-yellow-400 text-black px-4 py-1 font-medium">
+            Shop Now
+          </button>
+        </div>
+      </div>
+
+      {/* Slide 3 - Offer 2 */}
+      <div className="snap-start shrink-0 w-full relative h-[400px]">
+        <img
+          src={offer2}
+          alt="Offer 2"
+          className="w-full h-full object-cover rounded"
+        />
+        <div className="absolute inset-0 bg-black/40 text-white flex flex-col justify-center items-center">
+          <p className="text-sm font-semibold">SAVE 20%</p>
+          <h3 className="text-xl font-bold mb-2">Special Offer</h3>
+          <button className="bg-yellow-400 text-black px-4 py-1 font-medium">
+            Shop Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* Desktop View: Original Layout */}
+  <div className="hidden md:flex flex-col md:flex-row gap-4 w-full max-w-screen-4xl mx-auto">
+    {/* Main Image Section */}
+    <div className="relative w-full md:w-[70%] h-[512px]">
+      <img
+        src={images[0]}
+        alt="Men Fashion"
+        className="w-full h-full object-cover rounded"
+      />
+      <div className="absolute top-1/2 left-10 transform -translate-y-1/2 text-white">
+        <h1 className="text-5xl font-bold">Men Fashion</h1>
+        <p className="mt-2 text-lg max-w-sm">
+          Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elit ipsum diam
+        </p>
+        <button className="mt-4 px-4 py-2 border border-white hover:bg-white hover:text-black transition">
+          Shop Now
+        </button>
+      </div>
+    </div>
+
+    {/* Offers Section */}
+    <div className="md:w-[30%] w-full flex md:flex-col gap-4">
+      {[offer1, offer2].map((offer, index) => (
+        <div
+          key={index}
+          className="relative h-[250px] transition-transform duration-300 hover:scale-105"
+        >
+          <img
+            src={offer}
+            alt={`Offer ${index + 1}`}
+            className="w-full h-full object-cover rounded"
+          />
+          <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-white rounded">
+            <p className="text-sm font-semibold">SAVE 20%</p>
+            <h3 className="text-xl font-bold mb-2">Special Offer</h3>
+            <button className="bg-yellow-400 text-black px-4 py-1 font-medium">
+              Shop Now
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
       <section className="bg-gray-100 py-6 px-4">
         {/* Features Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-screen-xl mx-auto">

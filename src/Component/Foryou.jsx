@@ -77,7 +77,7 @@ const ProductList = () => {
             className="bg-white p-3 sm:p-4 rounded shadow hover:shadow-md transition min-h-[480px] flex flex-col"
           >
             <Link to={`/product/${product.id}`}>
-             <div className="relative group cursor-pointer">
+             <div className="relative group cursor-pointer flex justify-center gap-20">
               <img
                 src={
                   product.images?.[0] || 
@@ -97,7 +97,7 @@ const ProductList = () => {
                 <span className="absolute top-2 left-2 bg-yellow-500 text-white px-2 py-0.5 text-xs rounded">
                   10% OFF
                 </span>
-                <span className="absolute top-2 right-2 bg-green-600 text-white px-2 py-0.5 text-xs rounded">
+                <span className="absolute top-10 right-2 bg-green-600 text-white px-2 py-0.5 text-xs rounded">
                   Free Shipping
                 </span>
                 </div>
