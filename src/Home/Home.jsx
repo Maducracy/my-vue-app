@@ -637,7 +637,7 @@ function Home() {
       </div>
          
       <RecentProducts />
-     <h2 className="font-bold text-2xl md:text-4xl font-sans ">
+     <h2 className="font-bold text-2xl md:text-1xl font-sans mx-3  ">
               {" "}
               Recent Products
             </h2>
