@@ -111,6 +111,7 @@ const Phone = () => {
                 <FaShoppingCart className="text-white" />
                 Add to Cart
               </button>
+          
             )}
           </div>
         ))}

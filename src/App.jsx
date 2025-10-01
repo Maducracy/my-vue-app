@@ -1,5 +1,4 @@
 import Home from "./Home/Home";
-
 import Shop from "../src/Shop.jsx";
 import Help from "../src/Help.jsx";
 import FaQ from "../src/FAQ.jsx";
@@ -14,16 +13,12 @@ import Phone from "./Category/Phone.jsx";
 import Fashion from "./Category/Fashion.jsx";
 import Cartstore from "../src/Component/Cartstore.jsx";
 import About from "../src/About.jsx";
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-
 const App = () => {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-
         <Route path="/shop" element={<Shop />} />
         <Route path="/Help" element={<Help />} />
         <Route path="/FAQ" element={<FaQ />} />

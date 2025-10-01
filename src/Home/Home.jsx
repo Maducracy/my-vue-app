@@ -1,5 +1,4 @@
 import React from "react";
-
 import menimage from "../assets/menimage.jpg";
 import offer1 from "../assets/offer1.jpg";
 import offer2 from "../assets/offer2.jpg";
@@ -18,11 +17,7 @@ import gen from "../assets/gen.jpeg";
 import { useNavigate } from "react-router-dom";
 import "../LogoSlider.css";
 import { motion } from "framer-motion";
-import Foryou from "../Component/Foryou.jsx";
-
-
 import useStore from "../Zustand.js";
-
 import "../App.css";
 import "../Component/Footer.jsx";
 import {
@@ -155,6 +150,7 @@ function Home() {
                     to="./Login"
                     className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                   >
+                    
                     Login
                   </Link>
                   <Link
@@ -500,107 +496,49 @@ function Home() {
           </div>
         </div>
       </div>
-      <section className="px-4 py-5">
-  {/* Mobile View: Horizontal Slider */}
-  <div className="block md:hidden">
-    <div className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide space-x-4">
-      {/* Slide 1 - Main Image */}
-      <div className="snap-start shrink-0 w-full relative h-[400px]">
-        <img
-          src={images[0]}
-          alt="Main"
-          className="w-full h-full object-cover rounded"
-        />
-        <div className="absolute inset-0 bg-black/40 text-white flex flex-col justify-center px-4">
-          <h1 className="text-3xl font-bold">Men Fashion</h1>
-          <p className="mt-2 text-sm">
-            Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elit ipsum diam
-          </p>
-          <button className="mt-4 px-4 py-2 border border-white hover:bg-white hover:text-black transition">
-            Shop Now
-          </button>
-        </div>
-      </div>
-
-      {/* Slide 2 - Offer 1 */}
-      <div className="snap-start shrink-0 w-full relative h-[400px]">
-        <img
-          src={offer1}
-          alt="Offer 1"
-          className="w-full h-full object-cover rounded"
-        />
-        <div className="absolute inset-0 bg-black/40 text-white flex flex-col justify-center items-center">
-          <p className="text-sm font-semibold">SAVE 20%</p>
-          <h3 className="text-xl font-bold mb-2">Special Offer</h3>
-          <button className="bg-yellow-400 text-black px-4 py-1 font-medium">
-            Shop Now
-          </button>
-        </div>
-      </div>
-
-      {/* Slide 3 - Offer 2 */}
-      <div className="snap-start shrink-0 w-full relative h-[400px]">
-        <img
-          src={offer2}
-          alt="Offer 2"
-          className="w-full h-full object-cover rounded"
-        />
-        <div className="absolute inset-0 bg-black/40 text-white flex flex-col justify-center items-center">
-          <p className="text-sm font-semibold">SAVE 20%</p>
-          <h3 className="text-xl font-bold mb-2">Special Offer</h3>
-          <button className="bg-yellow-400 text-black px-4 py-1 font-medium">
-            Shop Now
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  {/* Desktop View: Original Layout */}
-  <div className="hidden md:flex flex-col md:flex-row gap-4 w-full max-w-screen-4xl mx-auto">
-    {/* Main Image Section */}
-    <div className="relative w-full md:w-[70%] h-[512px]">
-      <img
-        src={images[0]}
-        alt="Men Fashion"
-        className="w-full h-full object-cover rounded"
-      />
-      <div className="absolute top-1/2 left-10 transform -translate-y-1/2 text-white">
-        <h1 className="text-5xl font-bold">Men Fashion</h1>
-        <p className="mt-2 text-lg max-w-sm">
-          Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elit ipsum diam
-        </p>
-        <button className="mt-4 px-4 py-2 border border-white hover:bg-white hover:text-black transition">
-          Shop Now
-        </button>
-      </div>
-    </div>
-
-    {/* Offers Section */}
-    <div className="md:w-[30%] w-full flex md:flex-col gap-4">
-      {[offer1, offer2].map((offer, index) => (
-        <div
-          key={index}
-          className="relative h-[250px] transition-transform duration-300 hover:scale-105"
-        >
-          <img
-            src={offer}
-            alt={`Offer ${index + 1}`}
-            className="w-full h-full object-cover rounded"
-          />
-          <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-white rounded">
-            <p className="text-sm font-semibold">SAVE 20%</p>
-            <h3 className="text-xl font-bold mb-2">Special Offer</h3>
-            <button className="bg-yellow-400 text-black px-4 py-1 font-medium">
-              Shop Now
-            </button>
+      <section className="flex justify-between px-[] py-5 " >
+        <div className="flex flex-col md:flex-row gap-4 w-full max-w-screen-4xl mx-auto px-4">
+          <div className="relative w-full md:w-[70%] h-[300px] md:h-[512px]">
+            <img
+              src={images[currentImage]}
+              alt="Men Fashion"
+              className="w-full h-full object-cover rounded"
+            />
+            <div className="absolute top-1/2 left-4 sm:left-6 md:left-10 transform -translate-y-1/2 text-white">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
+                Men Fashion
+              </h1>
+              <p className="mt-2 text-sm sm:text-base md:text-lg max-w-sm">
+                Lorem rebum magna amet lorem magna erat diam stet. Sadips duo
+                stet amet amet ndiam elit ipsum diam
+              </p>
+             
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
 
+          <div className="flex flex-col gap-4 w-full md:w-[30%]">
+            {[offer1, offer2].map((offer, index) => (
+              <div
+                key={index}
+                className="relative h-[200px] md:h-[250px] w-full transition-transform duration-300  hover:scale-105"
+              >
+                <img
+                  src={offer}
+                  alt={`Offer ${index + 1}`}
+                  className="w-full h-full object-cover rounded transition-transform duration-300  hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-opacity-40 flex flex-col justify-center items-center text-white rounded">
+                  <p className="text-sm font-semibold">SAVE 20%</p>
+                  <h3 className="text-xl font-bold mb-2">Special Offer</h3>
+                  
+                </div>
+              </div>
+            ))}
+          </div>
+
+
+        </div>
+      </section>
 
       <section className="bg-gray-100 py-6 px-4">
         {/* Features Section */}
@@ -670,11 +608,8 @@ function Home() {
           </div>
 
           <div>
-            <h2 className="font-bold text-3xl md:text-4xl font-sans mt-5 md:mb-0 md:mr-6">
-              {" "}
-              Recent Products
-            </h2>
-            <Product />
+         
+          
           </div>
         </div>
       </section>
@@ -700,8 +635,19 @@ function Home() {
           </div>
         ))}
       </div>
+         
       <RecentProducts />
-      <Foryou />
+     <h2 className="font-bold text-2xl md:text-4xl font-sans ">
+              {" "}
+              Recent Products
+            </h2>
+        <Product />
+         
+        
+    
+      <div>
+        
+      </div>
       <Footer />
     </div>
   );
