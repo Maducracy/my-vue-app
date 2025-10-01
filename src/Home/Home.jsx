@@ -556,7 +556,7 @@ function Home() {
 
         {/* Categories Heading Section - below features */}
         <section className="flex flex-col md:flex-row items-center mx-4 md:mx-6 mt-10">
-          <h2 className="font-bold text-3xl md:text-4xl font-sans mb-2 md:mb-0 md:mr-6">
+          <h2 className="font-bold text-3xl md:text-2xl font-sans mb-2 md:mb-0 md:mr-6">
             Hot Deals
           </h2>
           <div className="w-full md:flex-1 h-[2px] bg-gray-300"></div>

@@ -103,24 +103,27 @@
 // export default Cartstore;
 // src/pages/Cartstore.js
 import { useState, useEffect } from "react";
-import { useStore,  } from "../Zustand";
-import { useProductStore} from  "../Store"
-import { FaTimes, FaCheckCircle } from "react-icons/fa";
+import { useStore } from "../Zustand";
+import { FaTimes, FaCheckCircle, FaPlus, FaMinus } from "react-icons/fa";
+
 const Cartstore = () => {
-  const { cart, removecart } = useStore();
-  
+  const { cart, removecart, increaseQty, decreaseQty } = useStore();
 
   const [formData, setFormData] = useState({ name: "", number: "", amount: "" });
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const total = cart.reduce((acc, item) => {
-    let price = typeof item.price === "string"
-      ? parseFloat(item.price.replace(/[^0-9.]/g, ""))
-      : item.price;
-    return acc + (isNaN(price) ? 0 : price);
-  }, 0).toFixed(2);
+  // ✅ Calculate total with quantity
+  const total = cart
+    .reduce((acc, item) => {
+      const price =
+        typeof item.price === "string"
+          ? parseFloat(item.price.replace(/[^0-9.]/g, ""))
+          : item.price;
+      return acc + (isNaN(price) ? 0 : price * (item.quantity ?? 1));
+    }, 0)
+    .toFixed(2);
 
   useEffect(() => {
     setFormData((prev) => ({ ...prev, amount: total }));
@@ -136,15 +139,21 @@ const Cartstore = () => {
     const { name, number, amount } = formData;
 
     if (!name || !number || !amount) {
-      setError("Please fill in all fields.");
+      setError("⚠️ Please fill in all fields.");
       return;
     }
 
-    // Simulate payment processing
+    // Simulate payment success
     setTimeout(() => {
       setSuccess(true);
       setError("");
-    }, 1200);
+      // Auto close modal after success
+      setTimeout(() => {
+        setIsModalOpen(false);
+        setSuccess(false);
+        setFormData({ name: "", number: "", amount: total });
+      }, 2000);
+    }, 1000);
   };
 
   return (
@@ -152,54 +161,99 @@ const Cartstore = () => {
       <h2 className="text-3xl font-bold mb-8 text-center">🛒 Your Shopping Cart</h2>
 
       {cart.length === 0 ? (
-        <p className="text-gray-500 text-center text-lg">Your cart is empty.</p>
+        <p className="text-gray-500 text-center text-lg">
+          Your cart is empty. <br /> 🛍️ Start shopping!
+        </p>
       ) : (
-        <>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-              {cart.map((item) => (
-                <div
-                  key={item.id}
-                  className="relative p-4 rounded-2xl bg-white shadow-md hover:shadow-lg transition"
-                >
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-44 object-contain rounded mb-3"
-                  />
-                  <h3 className="text-lg font-semibold truncate mb-1">{item.title}</h3>
-                  <p className="text-green-600 font-bold text-lg">${item.price}</p>
-                  <button
-                    onClick={() => removecart(item.id)}
-                    className="absolute top-2 right-2 text-red-600 hover:text-red-800"
-                    title="Remove"
-                  >
-                    <FaTimes size={20} />
-                  </button>
+        <div className="grid md:grid-cols-3 gap-8">
+          {/* CART ITEMS */}
+          <div className="md:col-span-2 space-y-6">
+            {cart.map((item) => (
+              <div
+                key={item.id}
+                className="flex items-center bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition relative"
+              >
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-24 h-24 object-contain rounded"
+                />
+                <div className="ml-4 flex-1">
+                  <h3 className="text-lg font-semibold line-clamp-1">{item.title}</h3>
+                  <p className="text-sm text-gray-500">In Stock</p>
+
+                  {/* Price and Quantity */}
+                  <div className="mt-2 flex items-center gap-4">
+                    <p className="text-lg font-bold text-green-600">${item.price}</p>
+
+                    {/* Quantity Control */}
+                    {/* <div className="flex items-center border rounded-lg overflow-hidden">
+                      <button
+                        onClick={() => decreaseQty(item.id)}
+                        className="px-2 py-1 bg-gray-200 hover:bg-gray-300"
+                      >
+                        <FaMinus />
+                      </button>
+                      <span className="px-4">{item.quantity ?? 1}</span>
+                      <button
+                        onClick={() => increaseQty(item.id)}
+                        className="px-2 py-1 bg-gray-200 hover:bg-gray-300"
+                      >
+                        <FaPlus />
+                      </button>
+                    </div> */}
+
+                    <p className="text-gray-600 font-medium ml-auto">
+                      Subtotal: ${(item.price * (item.quantity ?? 1)).toFixed(2)}
+                    </p>
+                  </div>
                 </div>
-              ))}
-            </div>
+
+                <button
+                  onClick={() => removecart(item.id)}
+                  className="absolute top-3 right-3 text-red-600 hover:text-red-800"
+                  title="Remove"
+                >
+                  <FaTimes size={20} />
+                </button>
+              </div>
+            ))}
           </div>
 
-          <div className="mt-10 flex justify-center">
+          {/* ORDER SUMMARY */}
+          <div className="bg-white rounded-lg shadow-md p-6 sticky top-20 h-fit">
+            <h3 className="text-xl font-semibold mb-4">Order Summary</h3>
+            <div className="flex justify-between mb-2">
+              <span>Subtotal</span>
+              <span>${total}</span>
+            </div>
+            <div className="flex justify-between mb-2">
+              <span>Shipping</span>
+              <span className="text-green-600">Free</span>
+            </div>
+            <div className="border-t my-2"></div>
+            <div className="flex justify-between text-lg font-bold">
+              <span>Total</span>
+              <span>${total}</span>
+            </div>
             <button
               onClick={() => {
                 setIsModalOpen(true);
                 setSuccess(false);
                 setError("");
               }}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-lg font-medium transition"
+              className="w-full mt-5 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition"
             >
               Proceed to Checkout
             </button>
           </div>
-        </>
+        </div>
       )}
 
-      {/* Modal */}
+      {/* Checkout Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 transition-opacity duration-300 ease-out bg-black/40 backdrop-blur-sm">
-          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative">
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/40 backdrop-blur-sm">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative animate-fadeIn">
             <button
               onClick={() => setIsModalOpen(false)}
               className="absolute top-3 right-3 text-gray-500 hover:text-red-500"
@@ -224,7 +278,10 @@ const Cartstore = () => {
                     onChange={handleChange}
                     className="peer w-full border-b-2 border-gray-300 focus:border-blue-600 outline-none py-2 bg-transparent"
                   />
-                  <label className="absolute left-0 top-2 text-gray-400 text-sm transition-all peer-focus:text-xs peer-focus:-top-4 peer-focus:text-blue-600 peer-valid:text-xs peer-valid:-top-4">
+                  <label
+                    className={`absolute left-0 top-2 text-gray-400 text-sm transition-all 
+                      ${formData.name && "text-xs -top-4 text-blue-600"}`}
+                  >
                     Full Name
                   </label>
                 </div>
@@ -238,7 +295,10 @@ const Cartstore = () => {
                     onChange={handleChange}
                     className="peer w-full border-b-2 border-gray-300 focus:border-blue-600 outline-none py-2 bg-transparent"
                   />
-                  <label className="absolute left-0 top-2 text-gray-400 text-sm transition-all peer-focus:text-xs peer-focus:-top-4 peer-focus:text-blue-600 peer-valid:text-xs peer-valid:-top-4">
+                  <label
+                    className={`absolute left-0 top-2 text-gray-400 text-sm transition-all 
+                      ${formData.number && "text-xs -top-4 text-blue-600"}`}
+                  >
                     Card/Bank Number
                   </label>
                 </div>
@@ -249,10 +309,10 @@ const Cartstore = () => {
                     name="amount"
                     value={formData.amount}
                     readOnly
-                    className=" peer w-full border-b-2 border-gray-300 focus:border-blue-600 outline-none py-2 bg-transparent"
+                    className="w-full border-b-2 border-gray-300 outline-none py-2 bg-transparent"
                   />
-                  <label className="">
-                    Price  Amount
+                  <label className="absolute left-0 top-2 text-gray-400 text-sm">
+                    Amount
                   </label>
                 </div>
 

@@ -38,7 +38,12 @@ export const useStore = create((set) => ({
     })),
   
     
-    
+     quantity: 1, // default value
+  increase: () => set((state) => ({ quantity: state.quantity + 1 })),
+  decrease: () =>
+    set((state) => ({
+      quantity: state.quantity > 1 ? state.quantity - 1 : 1, // prevent going below 1
+    })),
 
   
 }));
